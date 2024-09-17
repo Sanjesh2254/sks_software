@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applicants for {{ job.title }}</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f4f8;
+            color: #333;
+            padding-top: 60px; /* Space for fixed navbar */
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #2c3e50; /* Primary color */
+            padding: 10px 20px;
+            color: white;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000; /* Ensure it stays above other content */
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .navbar nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            transition: background-color 0.3s;
+        }
+
+        .navbar nav a:hover {
+            background-color: #0056b3; /* Darker shade of primary color */
+            border-radius: 4px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #222;
+            margin: 20px 0; /* Adjusted for navbar */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px auto;
+            max-width: 1200px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        .delete-button {
+            background-color: #e74c3c; /* Red color for delete button */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 5px 10px;
+            font-size: 0.9em;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .delete-button:hover {
+            background-color: #c0392b;
+        }
+
+        .delete-button:active {
+            transform: scale(0.98);
+        }
+
+        .delete-all-container {
+            margin: 20px auto;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 1200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .delete-all-container a {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+
+        .delete-all-container a:hover {
+            background-color: #0056b3;
+        }
+
+        .delete-all-container button {
+            background-color: #e74c3c; /* Red color for delete button */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 15px;
+            font-size: 1em;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .delete-all-container button:hover {
+            background-color: #c0392b;
+        }
+
+        .delete-all-container button:active {
+            transform: scale(0.98);
+        }
+
+        /* Styling for the Back to Job Listings link */
+        .back-to-listings {
+            display: inline-block;
+            background-color: #007bff; /* Primary color */
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 1em;
+            transition: background-color 0.3s, transform 0.2s;
+            margin: 20px auto;
+            text-align: center;
+            display: block;
+            width: fit-content;
+        }
+
+        .back-to-listings:hover {
+            background-color: #0056b3; /* Darker shade for hover */
+        }
+
+        .back-to-listings:active {
+            transform: scale(0.98);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .delete-all-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .delete-all-container a,
+            .delete-all-container button {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">SKS Software</div>
+        <nav>
+            <a href="{% url 'superhome' %}">Home</a>
+            
+        </nav>
+    </div>
+
+    <section class="delete-all-container">
+        <a href="{% url 'export_job_listings_excel' %}?q={{ request.GET.q }}">Download Job Listings Excel</a>
+        <form method="post" action="{% url 'delete_all_applications' %}">
+            {% csrf_token %}
+            <button type="submit" onclick="return confirm('Are you sure you want to delete all applications?');">Delete All</button>
+        </form>
+    </section>
+
+    <h1>Applicants for {{ job.title }}</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Skills</th>
+                <th>Education</th>
+                <th>Experience</th>
+                <th>Resume</th>
+                <th>Applied Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for application in applications %}
+                <tr>
+                    <td>{{ application.applicant_name }}</td>
+                    <td>{{ application.email }}</td>
+                    <td>{{ application.phone_number }}</td>
+                    <td>{{ application.age }}</td>
+                    <td>{{ application.gender }}</td>
+                    <td>{{ application.skills }}</td>
+                    <td>{{ application.education }}</td>
+                    <td>{{ application.experience }}</td>
+                    <td>
+                        {% if application.resume %}
+                            <a href="{{ application.resume.url }}" target="_blank">View Resume</a>
+                        {% else %}
+                            No Resume
+                        {% endif %}
+                    </td>
+                    <td>{{ application.applied_date }}</td>
+                    <td>
+                        <form action="{% url 'delete_application' application.id %}" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="delete-button">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="11">No applicants yet.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{% url 'superhome' %}" class="back-to-listings">Back to Job Listings</a>
+</body>
+</html>

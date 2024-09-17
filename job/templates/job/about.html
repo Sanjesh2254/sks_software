@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About SKS Software</title>
+    <style>
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('https://img.freepik.com/free-vector/network-connection-background_23-2148879892.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #333;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+   
+    padding: 10px 20px;
+    color: white;
+    position: fixed;
+    top: 0;
+    width: 98%;
+    z-index: 1000; /* Ensure it stays above other content */
+}
+
+
+.navbar .brand {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.navbar .nav-links a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    transition: background-color 0.3s;
+}
+
+.navbar .nav-links a:hover {
+    background-color: #575757;
+    border-radius: 4px;
+}
+
+.container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 80px auto 20px auto; /* Adjust margin-top to avoid overlap with fixed navbar */
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent background for readability */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+
+h1 {
+    color: #007bff;
+}
+
+ h2 {
+    color: #0aa3d6;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    margin-bottom: 10px;
+}
+
+.image-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.image-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+ 
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="brand">SKS Software</div>
+        <div class="nav-links">
+            <a href="{% url 'superhome' %}" class="link">Home</a>
+            
+            <a href="{% url 'Contact' %}" class="link">Contact</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>About SKS Software</h1>
+        
+        
+
+        <p>SKS Software is a dynamic and innovative technology company that specializes in providing cutting-edge software solutions across various industries.</p>
+
+        <h2>Core Offerings</h2>
+        <ul>
+            <li><strong>Custom Software Development:</strong> Tailored software solutions for businesses.</li>
+            <li><strong>Mobile and Web Applications:</strong> Development of responsive and intuitive applications.</li>
+            <li><strong>Enterprise Solutions:</strong> Software to streamline operations and improve efficiency.</li>
+            <li><strong>Consulting and Support:</strong> Expert consulting services and ongoing support.</li>
+        </ul>
+
+        <h2>Vision and Mission</h2>
+        <p><strong>Vision:</strong> To be a global leader in software innovation.</p>
+        <p><strong>Mission:</strong> To develop reliable, innovative software solutions that drive success for our clients.</p>
+
+        <h2>Company Culture</h2>
+        <p>SKS Software fosters a culture of creativity, collaboration, and continuous learning. Our team is passionate about technology and committed to delivering excellence.</p>
+
+        <h2>Commitment to Quality</h2>
+        <p>Quality is at the heart of everything we do. From concept to final product, we adhere to the highest standards of software development.</p>
+    </div>
+
+   
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply</title>
+</head>
+<body>
+    
+    <div class="container">
+        <h2>Send Interview Invite</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="email">Candidate Email:</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="date">Interview Date:</label>
+                <input type="date" class="form-control" id="date" name="date" required>
+            </div>
+            <div class="form-group">
+                <label for="time">Interview Time:</label>
+                <input type="time" class="form-control" id="time" name="time" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Send Invite</button>
+        </form>
+    </div>
+
+    
+</body>
+</html>
+
+

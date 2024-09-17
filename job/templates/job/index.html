@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKS Software - Overview</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding: 15px 20px;
+    position: fixed; /* Fixed position */
+    top: 0;
+    left: 0;
+    width: 100%; /* Full width */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Ensure it stays on top of other elements */
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: auto;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.header-nav {
+    display: flex;
+}
+
+.header-nav a {
+    color: #ecf0f1;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.header-nav a:hover, .header-nav .active {
+    background-color: #3498db;
+    color: #fff;
+}
+
+main {
+    padding: 80px 20px 20px; /* Add top padding to prevent content from hiding behind the fixed header */
+    max-width: 1200px;
+    margin: auto;
+}
+
+.slider {
+    position: relative;
+    width: 100%;
+    max-width: 700px;
+    margin: 20px auto;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.6s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+    box-sizing: border-box;
+}
+
+.slide img {
+    width: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 10px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 24px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.5);
+    transform: translateY(-50%);
+    user-select: none;
+    transition: background-color 0.3s;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.section {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.section h2 {
+    border-bottom: 3px solid #3498db;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    font-size: 26px;
+    color: #333;
+}
+
+.contact-info ul, .portfolio-item ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.contact-info li, .portfolio-item li {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.contact-info a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header-nav {
+        margin-top: 10px;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .header-nav a {
+        display: block;
+        margin: 5px 0;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">SKS Software</div>
+            <nav class="header-nav">
+                
+                <a href="{% url 'login' %}" class="active">Login</a>
+                <a href="{% url 'register' %}">Register</a>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+        <section class="slider">
+            <div class="slides">
+                <!-- Slide 1 -->
+                <div class="slide">
+                    <img src="https://tms-outsource.com/blog/wp-content/uploads/2021/03/software-heder.jpg" alt="Slide 1">
+                </div>
+                <!-- Slide 2 -->
+                <div class="slide">
+                    <img src="https://integrabooks.co/wp-content/uploads/2023/10/20200123220110-GettyImages-1081869340.jpeg" alt="Slide 2">
+                </div>
+                <!-- Slide 3 -->
+                <div class="slide">
+                    <img src="https://www.technicalcommunicationcenter.com/wp-content/uploads/2021/02/Office2.jpg" alt="Slide 3">
+                </div>
+            </div>
+            <button class="prev">❮</button>
+            <button class="next">❯</button>
+        </section>
+
+        <section class="section">
+            <h2>About Us</h2>
+            <p>SKS Software is dedicated to delivering high-quality software solutions tailored to meet the unique needs of our clients. Our mission is to provide innovative, reliable, and scalable software that helps businesses achieve their goals and streamline their operations.</p>
+        </section>
+
+        <section class="section">
+            <h2>Our Services</h2>
+            <ul>
+                <li><strong>Custom Software Development:</strong> Tailored solutions designed to fit your specific business requirements.</li>
+                <li><strong>Enterprise Solutions:</strong> Robust software solutions for large organizations to enhance efficiency and productivity.</li>
+                <li><strong>Mobile App Development:</strong> Building intuitive and user-friendly mobile applications for iOS and Android platforms.</li>
+                <li><strong>Web Development:</strong> Creating dynamic and responsive websites and web applications.</li>
+                <li><strong>Consulting:</strong> Expert advice and guidance on software solutions and technology strategies.</li>
+            </ul>
+        </section>
+
+        <section class="section contact-info">
+            <h2>Contact Us</h2>
+            <ul>
+                <li><strong>Website:</strong> <a href="https://www.skssoftware.com" target="_blank">www.skssoftware.com</a></li>
+                <li><strong>Email:</strong> <a href="mailto:skssoftwaretech@gmail.com">skssoftwaretech@gmail.com</a></li>
+                <li><strong>Phone:</strong> +1 (123) 456-7890</li>
+                <li><strong>Address:</strong> 123 Software Lane, Tech City, CA 90210</li>
+            </ul>
+        </section>
+
+        <section class="section portfolio">
+            <h2>Our Work</h2>
+            <div class="portfolio-item">
+                <h3>Project 1</h3>
+                <p>A description of the project, including technologies used, challenges faced, and the results achieved.</p>
+            </div>
+            <div class="portfolio-item">
+                <h3>Project 2</h3>
+                <p>A description of another project with similar details.</p>
+            </div>
+            <!-- Add more portfolio items as needed -->
+        </section>
+    </main>
+
+    <script>
+        let currentIndex = 0;
+
+        function showSlide(index) {
+            const slides = document.querySelector('.slides');
+            const totalSlides = document.querySelectorAll('.slide').length;
+            if (index >= totalSlides) {
+                currentIndex = 0;
+            } else if (index < 0) {
+                currentIndex = totalSlides - 1;
+            } else {
+                currentIndex = index;
+            }
+            slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+
+        document.querySelector('.prev').addEventListener('click', () => {
+            showSlide(currentIndex - 1);
+        });
+
+        document.querySelector('.next').addEventListener('click', () => {
+            showSlide(currentIndex + 1);
+        });
+
+        // Optional: Auto slide every 5 seconds
+        setInterval(() => {
+            showSlide(currentIndex + 1);
+        }, 5000);
+    </script>
+</body>
+</html>

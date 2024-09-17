@@ -1,0 +1,18 @@
+<!-- schedule_interview.html -->
+
+<form method="post">
+    {% csrf_token %}
+    <label for="email">Candidate Email:</label>
+    <input type="email" name="email" required><br>
+
+    <label for="date">Interview Date:</label>
+    <input type="date" name="date" required><br>
+
+    <label for="time">Interview Time:</label>
+    <input type="time" name="time" required><br>
+
+    <label for="location">Interview Location:</label>
+    <input type="text" name="location" required><br>
+
+    <button type="submit">Send Interview Email</button>
+</form>

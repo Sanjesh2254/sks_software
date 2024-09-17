@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Review Your Information</title>
+</head>
+<body>
+    <h2>Review Your Application</h2>
+    <ul>
+        {% for key, value in form_data.items %}
+            <li><strong>{{ key }}:</strong> {{ value }}</li>
+        {% endfor %}
+        <li><strong>Resume Link:</strong> <a href="{{ resume_link }}">{{ resume_link }}</a></li>
+    </ul>
+    
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Submit Application</button>
+        <a href="{% url 'apply' %}">Edit</a>
+    </form>
+    
+</body>
+</html>

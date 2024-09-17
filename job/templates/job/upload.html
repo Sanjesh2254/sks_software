@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Excel File and Send Invites</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #007bff;
+            color: #ffffff;
+            padding: 10px 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar .brand {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .navbar .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 16px;
+            margin-left: 15px;
+        }
+
+        .navbar .nav-links a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        input[type="file"],
+        input[type="date"],
+        input[type="time"],
+        button {
+            width: calc(100% - 22px);
+            padding: 12px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+            background-color: #fafafa;
+        }
+
+        input[type="file"] {
+            padding: 8px;
+            background-color: #f9f9f9;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        button:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(38, 143, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="brand">SKS Software</div>
+        <div class="nav-links">
+            <a href="{% url 'superhome' %}">Home</a>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Upload Excel File and Send Interview Invites</h1>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="file">Upload Excel File:</label>
+                <input type="file" id="file" name="file" accept=".xlsx" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="date">Interview Date:</label>
+                <input type="date" class="form-control" id="date" name="date" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="time">Interview Time:</label>
+                <input type="time" class="form-control" id="time" name="time" required>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Upload and Send Invites</button>
+        </form>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

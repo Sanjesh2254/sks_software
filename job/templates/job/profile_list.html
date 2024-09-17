@@ -1,0 +1,33 @@
+<!-- myapp/templates/profile_list.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile List</title>
+</head>
+<body>
+    <h1>Profile List</h1>
+    <a href="{% url 'profile_create' %}" >add details</a>
+    <ul>
+        {% for profile in profiles %}
+       
+            <li>
+                <p>Username: {{ user.username }}</p>
+                <p>Email: {{ user.email }}</p><br>
+                Address: {{ profile.address }}<br>
+                Email: {{ profile.email }}<br>
+                Phone Number: {{ profile.phone_number }}<br>
+                Age: {{ profile.age }}<br>
+                Gender: {{ profile.gender }}<br>
+                Skills: {{ profile.skills }}<br>
+                Education: {{ profile.education }}<br>
+                Experience: {{ profile.experience }}<br>
+            </li>
+        {% empty %}
+            <li>No profiles found.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Listings</title>
+    <style>
+        /* Your existing styles here */
+       
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="brand">SKS Software</div>
+        <div class="nav-links">
+           
+            {% if user.is_authenticated %}
+            
+                {% if user.is_superuser %}
+                    <a href="{% url 'category_create' %}" class="btn btn-success">Category Add</a>
+                    <a href="{% url 'job_posting' %}" class="btn btn-success">Post a Job</a>
+                    
+                    <a href="{% url 'upload_excel' %}" class="btn btn-success">Interview Invite</a>
+            
+     
+                {% else %}
+                    <a href="{% url 'user_profile' %}" class="btn btn-success">Profile</a>
+                    <a href="{% url 'Contact' %}" class="btn btn-success">Contact</a>
+                    <a href="{% url 'about' %}" class="btn btn-success">About</a>
+                    
+                {% endif %}
+               
+            {% endif %}
+            <form action ="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" value="logout" class="hii" >logout</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Job Listings</h1>
+
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <form method="get" action="{% url 'superhome' %}">
+                <input type="text" name="q" placeholder="Search category ..." value="{{ request.GET.q }}">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+
+        <!-- Display Job Postings -->
+        <div class="job-listing">
+            {% if job_postings %}
+                {% for job in job_postings %}
+                    <div class="job">
+                        <h3>Category: {{ job.category }}</h3>
+                        <h3>Job name: {{ job.title }}</h3>
+                        <h3>Description: {{ job.description }}</h3>
+                        <h4>Location: {{ job.location }}</h4>
+                        <h4>Job type: {{ job.job_type }}</h4>
+                        <h4>Salary: {{ job.salary }}</h4>
+                        <h4>Requirements: {{ job.requirements }}</h4>
+                        <h4>Application deadline: {{ job.application_deadline }}</h4>
+                        <small>Posted on: {{ job.posted_date }}</small>
+                        
+                        
+
+                        {% if show_applicants %}
+                            <div class="applicant-details">
+                                <h4>Applicants:</h4>
+                                {% for applicant in applicants %}
+                                    <div>
+                                        <p>Name: {{ applicant.applicant_name }}</p>
+                                        <p>Email: {{ applicant.email }}</p>
+                                        <p>Phone: {{ applicant.phone_number }}</p>
+                                        <p>Skills: {{ applicant.skills }}</p>
+                                        <p>Resume Link: <a href="{{ applicant.resume_link }}" target="_blank">{{ applicant.resume_link }}</a></p>
+                                    </div>
+                                {% empty %}
+                                    <p>No applicants for this job.</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                        {% if user.is_superuser %}
+                            <a href="{% url 'edit_job_posting' job.pk %}" class="btn btn-primary">Edit</a>
+                            
+                            <form action="{% url 'delete_job_posting' job.id %}" method="post" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                            <form method="post" action="{% url 'applylisting' job.id %}" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" name="show_applicants" value="true" class="btn btn-info">Show Applicants</button>
+                            </form>
+                        {% else %}
+                            <form action="{% url 'apply' job.pk %}" method="post" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger">Apply</button>
+                            </form>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No job postings available.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

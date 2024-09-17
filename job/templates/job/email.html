@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Received</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background: #ffffff;
+            padding: 20px;
+            border: 1px solid #dddddd;
+            border-radius: 5px;
+        }
+        h1 {
+            color: #0044cc;
+            margin-bottom: 10px;
+        }
+        p {
+            margin: 10px 0;
+        }
+        a {
+            color: #0044cc;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .footer {
+            font-size: 0.9em;
+            color: #666666;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Dear {{ application.applicant_name }},</h1>
+        <p>Thank you for applying for the position of <strong>{{ application.job_posting }}</strong> at <strong>SkS Software</strong>. We have received your application and resume successfully.</p>
+        
+        <p>Our recruitment team will review your application and resume. If your qualifications meet our requirements, we will reach out to you for the next steps in the process.</p>
+        
+        <p>Thank you for your interest in joining our team. We wish you the best of luck!</p>
+        
+        <p>Best regards,<br>
+        The Recruitment Team<br>
+        <strong>SkS Software</strong></p>
+        
+        <div class="footer">
+            <p>If you have any questions, please reply to this email  <a href="mailto:rsanjesh64@gmail.com">rsanjesh64@gmail.com</a>.</p>
+        
+        </div>
+    </div>
+</body>
+</html>

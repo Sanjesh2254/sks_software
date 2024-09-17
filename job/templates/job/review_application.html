@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Review Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        .section {
+            margin-bottom: 15px;
+        }
+        .section p {
+            margin: 5px 0;
+        }
+        .section strong {
+            color: #555;
+        }
+        .button {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 10px;
+            text-align: center;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .link {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Review Your Application</h1>
+        <div class="section">
+            <p><strong>Job Posting:</strong> {{ job_posting_name }}</p>
+            <p><strong>Applicant Name:</strong> {{ form_data.applicant_name }}</p>
+            <p><strong>Address:</strong> {{ form_data.address }}</p>
+            <p><strong>Email:</strong> {{ form_data.email }}</p>
+            <p><strong>Phone Number:</strong> {{ form_data.phone_number }}</p>
+            <p><strong>Age:</strong> {{ form_data.age }}</p>
+            <p><strong>Gender:</strong> {{ form_data.gender }}</p>
+            <p><strong>Skills:</strong> {{ form_data.skills }}</p>
+            <p><strong>Education:</strong> {{ form_data.education }}</p>
+            <p><strong>Experience:</strong> {{ form_data.experience }}</p>
+            <p><strong>Resume:</strong> <a href="/media/{{ resume_file_name }}" download>{{ resume_file_name }}</a></p>
+        </div>
+        
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="button">Confirm and Submit</button>
+        </form>
+        <a href="{% url 'job_application' %}" class="link">Edit</a>
+    </div>
+</body>
+</html>
